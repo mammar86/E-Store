@@ -31,10 +31,11 @@ namespace API
             {
                 opt.UseSqlite(Configuration.GetConnectionString("DefaultConnection"));
             });
+            services.AddCors();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env) //middleware
         {
             if (env.IsDevelopment())
             {
@@ -46,6 +47,11 @@ namespace API
             app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            app.UseCors(option =>
+                     {
+                         option.AllowAnyHeader().AllowAnyMethod().WithOrigins("https://localhost:3000");
+                     });
 
             app.UseAuthorization();
 
