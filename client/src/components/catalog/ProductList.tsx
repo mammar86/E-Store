@@ -11,7 +11,7 @@ const ProductList = ({ products }: ProductListProps) => {
       {products.map((product) => (
         <Grid item xs={6} md={3} key={product.id}>
           <ProductCard
-          
+          id={product.id}
           name={product.name}
           price={product.price}
           pictureUrl={product.pictureUrl}
@@ -25,3 +25,5 @@ const ProductList = ({ products }: ProductListProps) => {
 };
 
 export default ProductList;
+
+
