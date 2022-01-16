@@ -15,7 +15,7 @@ const ProductDetails = () => {
       .then((response) => setProduct(response.data))
       .catch((error) => console.log(error));
     // .finally(() => setLoading(false));
-  });
+  }, []);
   return (
     <>
       {product ? (
