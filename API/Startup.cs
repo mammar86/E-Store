@@ -46,12 +46,13 @@ namespace API
 
             app.UseHttpsRedirection();
 
-            app.UseRouting();
-
             app.UseCors(option =>
                      {
-                         option.AllowAnyHeader().AllowAnyMethod().WithOrigins("https://localhost:3000");
+                         option.AllowAnyHeader().AllowAnyMethod().WithOrigins("http://localhost:3000","https://localhost:3000");
                      });
+
+            app.UseRouting();
+
 
             app.UseAuthorization();
 
