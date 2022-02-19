@@ -1,16 +1,18 @@
 import { useEffect, useState } from "react";
+import agent from "../../agent";
 import { Product } from "../../Models/product";
-import ProductList from './ProductList';
+import ProductList from "./ProductList";
 
 export default function Catalog() {
   const [products, setProducts] = useState<Product[]>([]);
 
   useEffect(() => {
-    fetch("https://localhost:7076/api/products")
-      .then((res) => res.json())
-      .then((data) => setProducts(data));
+    agent.Catalog.list().then((products) => setProducts(products));
+    
+    // fetch("https://localhost:7076/api/products")
+    //   .then((res) => res.json())
+    //   .then((data) => setProducts(data));
   }, []);
-
   // const addProduct = () => {
   //   setProducts((prevState) => [
   //     ...prevState,
@@ -27,7 +29,7 @@ export default function Catalog() {
 
   return (
     <>
-    <ProductList products={products} />
+      <ProductList products={products} />
     </>
   );
 }
